@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Governor — Cut your LLM bill in half. One line of code.</title>
+<meta name="description" content="A drop-in proxy that classifies each LLM request and routes to the cheapest tier that's good enough. 49% savings on coding, 65% on debugging, 95% quality retention. Open source.">
+<meta property="og:title" content="Governor — Cut LLM costs 49% with a 200-line keyword router">
+<meta property="og:description" content="Drop-in proxy. Workload-classifying router. Pay percent-of-measured-savings.">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #f5f5f5;
+    --muted: #999;
+    --accent: #66ff99;
+    --line: #222;
+    --code-bg: #111;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Mono", Menlo, monospace;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  h1 { font-size: 44px; line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.02em; }
+  h2 { font-size: 22px; margin: 56px 0 16px; letter-spacing: -0.01em; }
+  h3 { font-size: 16px; margin: 24px 0 8px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+  p { margin: 0 0 16px; color: #ddd; }
+  .lead { font-size: 19px; color: #ddd; }
+  .accent { color: var(--accent); }
+  .muted { color: var(--muted); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0; }
+  pre, code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    padding: 16px 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  code { background: var(--code-bg); padding: 1px 6px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  th, td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+  th { color: var(--muted); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .cta {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-right: 12px;
+    margin-top: 8px;
+  }
+  .cta-secondary {
+    display: inline-block;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+    margin-top: 8px;
+  }
+  form { display: flex; gap: 8px; max-width: 480px; margin-top: 16px; }
+  input[type=email] {
+    flex: 1; padding: 12px 14px; border: 1px solid var(--line); background: var(--code-bg); color: var(--fg); border-radius: 4px; font: inherit;
+  }
+  button { padding: 12px 20px; background: var(--accent); color: #000; border: 0; border-radius: 4px; font: inherit; font-weight: 600; cursor: pointer; }
+  ul { padding-left: 20px; }
+  li { margin: 4px 0; }
+  footer { margin-top: 80px; color: var(--muted); font-size: 14px; }
+  .badge { display: inline-block; padding: 2px 8px; background: var(--code-bg); border: 1px solid var(--line); border-radius: 3px; font-size: 12px; color: var(--muted); margin-right: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="badge">v0.1.0 · alpha</span>
+<span class="badge">MIT licensed</span>
+<span class="badge">Drop-in OpenAI compatible</span>
+
+<h1>Cut your LLM bill in half. <span class="accent">One line of code.</span></h1>
+
+<p class="lead">
+Governor is a drop-in proxy that routes each request to the cheapest model that's good enough.
+<strong>49% savings on coding sessions. 65% on debugging. 95% quality retention.</strong>
+No fine-tuning. No embeddings. No behavioral changes. Swap your <code>base_url</code>. We send you the difference.
+</p>
+
+<a class="cta" href="#trial">Start free trial</a>
+<a class="cta-secondary" href="#research">See the research</a>
+
+<hr>
+
+<h2>How it works</h2>
+
+<h3>1. Classify</h3>
+<p>~200 lines of keyword regex look at the request. Coding terms route one way. Architecture terms route another. Greetings route to a tiny fast model.</p>
+
+<h3>2. Route</h3>
+<p>Three tiers. <strong>ECONOMY</strong> for chat and acks. <strong>STANDARD</strong> for bounded coding. <strong>FRONTIER</strong> for architecture and security work. You set the model behind each tier; we pick which to call.</p>
+
+<h3>3. Save</h3>
+<p>Per-tier spend in your dashboard. We invoice a flat percent of the savings. <strong>If we don't save you money, you don't pay.</strong></p>
+
+<hr>
+
+<h2>Numbers, with the caveat</h2>
+
+<p>35 measured turns across scripted and real sessions. Simulated cloud pricing — methodology published.</p>
+
+<table>
+<tr><th>Workload</th><th class="num">Flat (frontier)</th><th class="num">Routed</th><th class="num">Savings</th><th class="num">Quality</th></tr>
+<tr><td>Mixed coding</td><td class="num">$0.194</td><td class="num">$0.100</td><td class="num accent">49%</td><td class="num">95%</td></tr>
+<tr><td>Debugging</td><td class="num">$0.156</td><td class="num">$0.055</td><td class="num accent">65%</td><td class="num">96%</td></tr>
+<tr><td>Research / Q&amp;A</td><td class="num">$0.052</td><td class="num">$0.004</td><td class="num accent">92%*</td><td class="num">100%</td></tr>
+<tr><td>Customer support</td><td class="num">$0.040</td><td class="num">$0.003</td><td class="num accent">93%*</td><td class="num">100%</td></tr>
+</table>
+
+<p class="muted">* Q&amp;A and support savings depend on routing fraction (most turns route to ECONOMY). Coding and debugging are the conservative numbers.</p>
+
+<p>If your monthly LLM bill is $5,000 and 40% is coding workloads, conservative monthly savings are <strong>~$1,000</strong>. At 20% percent-of-savings pricing, you keep ~$800. Self-funding on day one.</p>
+
+<hr>
+
+<h2>Why a regex is enough</h2>
+
+<p>The decision-relevant signal for tier selection is in the words of the prompt. Internal models of conversation state didn't help in our testing — they added complexity without adding accuracy on the routing decision. So the classifier is keyword-based.</p>
+
+<p>Translation: <strong>you don't need an AI to decide when to use AI.</strong></p>
+
+<hr>
+
+<h2 id="trial">Start free trial</h2>
+
+<p>Drop in your email. We'll reach out for a 15-minute call to estimate savings on your specific workload, then onboard with a 30-day pilot at percent-of-measured-savings (free if no savings).</p>
+
+<form action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+  <input type="email" name="email" placeholder="you@example.com" required>
+  <button type="submit">Request access</button>
+</form>
+
+<p class="muted" style="font-size:13px; margin-top:8px;">No spam. We email once to schedule, then never again unless you reply.</p>
+
+<hr>
+
+<h2 id="research">Research</h2>
+
+<p>Governor is the §5 finding from a multi-domain research program on boundary mechanisms — small wrappers that observe system-environment boundaries and outperform large internal-state models. The full paper covers three findings (986+ trials, including the multi-file wall in code repair and momentum protection in continual learning) and 14 honest negative results.</p>
+
+<p><a class="cta-secondary" href="PAPER.html">Read the paper</a> &nbsp; <a class="cta-secondary" href="https://github.com/REPLACE/governor">GitHub</a></p>
+
+<hr>
+
+<h2>FAQ</h2>
+
+<h3>Will this break my app?</h3>
+<p>No. OpenAI-API-compatible. If we go down, point <code>base_url</code> back at OpenAI directly — back online in 10 seconds.</p>
+
+<h3>What about latency?</h3>
+<p>Routing decision adds ~2ms. ECONOMY-tier responses are faster than frontier responses, so average latency on Economy/Standard turns drops.</p>
+
+<h3>What if a request is misrouted?</h3>
+<p>You can pin specific request types to specific tiers. Keyword list is editable per-deployment.</p>
+
+<h3>Where does the data go?</h3>
+<p>Self-hosted by default. Cloud version available. We never store the request body — only token counts and tier classification.</p>
+
+<h3>Who built this?</h3>
+<p>Bentley Moon, independent AI researcher. Built on the Lattice execution gateway (13,303 LOC, 133 tests). Research backed by a multi-project program documented in a 30,000-word synthesis paper.</p>
+
+<footer>
+<p>© 2026 Bentley Moon · MIT-licensed core · <a href="https://github.com/REPLACE/governor" style="color:var(--muted);">GitHub</a> · <a href="mailto:bentleymoonperkins@gmail.com" style="color:var(--muted);">Contact</a></p>
+</footer>
+
+</div>
+</body>
+</html>
