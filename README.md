@@ -78,7 +78,7 @@ Source: §5 of [PAPER.md](PAPER.md), 35 measured turns across scripted and real 
 
 For hosted LLM cost routing: [CodeRouter](https://www.coderouter.io/), [OpenRouter](https://openrouter.ai/), [Portkey](https://portkey.ai/), [Martian](https://withmartian.com/).
 
-Related, same author: [lattice-commit](https://github.com/Vingadden/lattice-commit) — open-source, git-native checkpointing for multi-file LLM code repair (`pip install lattice-commit`). Different problem: correctness rather than cost.
+Related, same author: [lattice-commit](https://github.com/bentleymoon/lattice-commit) — open-source, git-native checkpointing for multi-file LLM code repair (`pip install lattice-commit`). Different problem: correctness rather than cost.
 
 ## Files
 

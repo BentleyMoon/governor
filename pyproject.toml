@@ -40,9 +40,9 @@ dev = [
 governor = "governor.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/Vingadden/governor"
-Issues = "https://github.com/Vingadden/governor/issues"
-Paper = "https://github.com/Vingadden/governor/blob/master/PAPER.md"
+Homepage = "https://github.com/bentleymoon/governor"
+Issues = "https://github.com/bentleymoon/governor/issues"
+Paper = "https://github.com/bentleymoon/governor/blob/master/PAPER.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["governor"]
