@@ -118,27 +118,29 @@ No fine-tuning. No embeddings. No behavioral changes. Swap your <code>base_url</
 
 <h2>Numbers, with the caveat</h2>
 
-<p>35 measured turns across scripted and real sessions. Simulated cloud pricing — methodology published.</p>
+<p>35 measured turns across scripted and real sessions, roughly nine per row, against simulated cloud pricing. <strong>The turn-level data and the rating protocol are not yet published</strong>, so these figures cannot currently be independently checked. Read them as indicative, not as a benchmark.</p>
 
 <table>
-<tr><th>Workload</th><th class="num">Flat (frontier)</th><th class="num">Routed</th><th class="num">Savings</th><th class="num">Quality</th></tr>
+<tr><th>Workload</th><th class="num">Flat, single model*</th><th class="num">Routed</th><th class="num">Savings</th><th class="num">Quality</th></tr>
 <tr><td>Mixed coding</td><td class="num">$0.194</td><td class="num">$0.100</td><td class="num accent">49%</td><td class="num">95%</td></tr>
 <tr><td>Debugging</td><td class="num">$0.156</td><td class="num">$0.055</td><td class="num accent">65%</td><td class="num">96%</td></tr>
 <tr><td>Research / Q&amp;A</td><td class="num">$0.052</td><td class="num">$0.004</td><td class="num accent">92%*</td><td class="num">100%</td></tr>
 <tr><td>Customer support</td><td class="num">$0.040</td><td class="num">$0.003</td><td class="num accent">93%*</td><td class="num">100%</td></tr>
 </table>
 
-<p class="muted">* Q&amp;A and support savings depend on routing fraction (most turns route to ECONOMY). Coding and debugging are the conservative numbers.</p>
+<p class="muted">* The baseline is every turn, greetings included, sent to one single model, which is the most favourable comparator available. Our own documents disagree on which tier that model was: the paper extract says "frontier", the parent synthesis says "all capable model". Until the turn-level data is published we state it only as a single-model baseline of unconfirmed tier.</p>
+
+<p class="muted">Q&amp;A and support savings depend on routing fraction (most turns route to ECONOMY). Coding and debugging are the conservative numbers.</p>
 
 <p>If your monthly LLM bill is $5,000 and 40% is coding workloads, conservative monthly savings are <strong>~$1,000</strong>. At 20% percent-of-savings pricing, you keep ~$800. Self-funding on day one.</p>
 
 <hr>
 
-<h2>Why a regex is enough</h2>
+<h2>Why a regex</h2>
 
-<p>The decision-relevant signal for tier selection is in the words of the prompt. Internal models of conversation state didn't help in our testing — they added complexity without adding accuracy on the routing decision. So the classifier is keyword-based.</p>
+<p>The working hypothesis, carried over from the parent research program, is that the decision-relevant signal for tier selection is observable in the words of the prompt. So the classifier is keyword-based.</p>
 
-<p>Translation: <strong>you don't need an AI to decide when to use AI.</strong></p>
+<p><strong>We have not benchmarked this against a learned router.</strong> There is no head-to-head here, so nothing on this page shows a regex beating a fine-tuned classifier. If that comparison is what you need, <a href="https://github.com/lm-sys/RouteLLM" style="color:var(--accent);">RouteLLM</a> is the work to read.</p>
 
 <hr>
 
@@ -178,7 +180,7 @@ No fine-tuning. No embeddings. No behavioral changes. Swap your <code>base_url</
 <p>Self-hosted by default. Cloud version available. We never store the request body — only token counts and tier classification.</p>
 
 <h3>Who built this?</h3>
-<p>Bentley Moon, independent AI researcher. Built on the Lattice execution gateway (13,303 LOC, 133 tests). Research backed by a multi-project program documented in a 30,000-word synthesis paper.</p>
+<p>Bentley Moon, independent AI researcher. Built on the Lattice execution gateway (13,303 LOC, 133 tests). The routing figures come from 35 measured turns; the parent synthesis paper documents the wider program but does not contain this measurement's methodology, which is not yet written up.</p>
 
 <footer>
 <p>© 2026 Bentley Moon · MIT-licensed core · <a href="https://github.com/REPLACE/governor" style="color:var(--muted);">GitHub</a> · <a href="mailto:bentleymoonperkins@gmail.com" style="color:var(--muted);">Contact</a></p>

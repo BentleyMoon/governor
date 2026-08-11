@@ -7,9 +7,18 @@ April 2026
 
 ## Abstract
 
-Governor is a 3-tier classifier and proxy that routes LLM API requests to the cheapest tier whose quality is adequate for the workload. Across 35 measured turns spanning coding, debugging, research, and customer-support sessions, Governor produced 23–65% cost reduction with 95–96% quality retention on coding workloads, validated against simulated cloud pricing on published model rate cards.
+Governor is a 3-tier classifier and proxy that routes LLM API requests to the cheapest tier whose quality is adequate for the workload. Across 35 measured turns spanning coding, debugging, research, and customer-support sessions, Governor produced **49% cost reduction on mixed coding and 65% on debugging**, with 95–96% hand-rated quality retention, computed against simulated cloud pricing on published model rate cards.
 
-The classifier itself is approximately 200 lines of keyword regex with no learned components, no embeddings, and no internal state model. The argument for keywords over a learned classifier is empirical: the decision-relevant signal for tier selection appears to be observable at the request boundary — in the words of the prompt — and a more sophisticated classifier did not improve the routing decision in our testing.
+> **Correction, 2026-08-11.** This abstract previously reported a "23–65%" range. No measurement in this
+> work produced 23%, and the public README reported a third range, "30-60%", which also matches no
+> measurement. The four measured values are 49%, 65%, 92% and 93%. Only the per-scenario figures are
+> reported now.
+
+The classifier itself is approximately 200 lines of keyword regex with no learned components, no embeddings, and no internal state model. The argument for keywords over a learned classifier is a **hypothesis carried over from the parent research program, not a result established here**: the decision-relevant signal for tier selection appears to be observable at the request boundary, in the words of the prompt.
+
+> **Correction, 2026-08-11.** This paragraph previously stated that "a more sophisticated classifier did
+> not improve the routing decision in our testing." No such classifier was ever tested.
+> `MASTER_RESEARCH_PAPER.md` §7 records "N/A (no internal model tested)" for this domain.
 
 ## 1. The Mechanism
 
@@ -56,13 +65,21 @@ A separate containment validator built into the same proxy catches dangerous LLM
 
 This is reported alongside Governor because it shares the same architectural principle (boundary observation) and is implemented as a sibling module in the proxy.
 
+> **Read this result with suspicion, 2026-08-11.** A perfect 100% detection and 0% false-alarm score, on
+> attacks and valid proposals both authored by the same person who wrote the validator, is the signature
+> of an instrument that is not discriminating rather than one that is discriminating perfectly. There is
+> no canary here: no deliberately broken case the validator must fail to catch, which is the only way to
+> tell "caught everything" apart from "flagged everything" or "never looked." A sibling program in this
+> research ecosystem retracted 30 graded results to exactly this failure. Until a canary and a negative
+> control are added, treat §3 as unvalidated and do not cite it.
+
 ## 4. Why a Regex Is Enough (the boring argument)
 
 The hypothesis from the broader research program is that **boundary mechanisms outperform internal models when the sufficient statistic for the decision is observable at the system-environment interface.**
 
-For tier selection, the sufficient statistic is the presence of coding/architecture keywords in the prompt — observable at the request boundary. A learned classifier could in principle do better, but in our testing keyword presence captured the routing-relevant signal cleanly enough that adding learned components didn't move the needle.
+For tier selection, the hypothesis is that the sufficient statistic is the presence of coding/architecture keywords in the prompt, observable at the request boundary. A learned classifier could in principle do better. **We do not know whether it does, because we never ran one.**
 
-This is not a strong claim. It's an empirical observation that, given the labeled data we had, a regex was as good as anything else we tried. The hypothesis predicts failure modes:
+This is not a weak claim, it is an untested one, and the distinction matters. What this work shows is what a regex achieves on its own on 35 turns. It shows nothing about how that compares to a learned router. The hypothesis predicts failure modes:
 
 - Workloads where complexity depends on context not present in the current turn (long-running negotiations, multi-document reasoning where the keywords are in the documents, not the prompt)
 - Workloads where the relevant tier depends on the *response* the LLM will produce, not the request (creative work, planning)
@@ -72,7 +89,9 @@ These are all extension targets, not refutations. The regex-is-enough claim is b
 
 ## 5. Limitations
 
-1. **Sample size.** Quality measurement is on 35 hand-rated turns. The 23–65% savings range is real but should be re-validated on each deployment's actual workload.
+1. **Sample size, and no published data.** Quality measurement is on 35 hand-rated turns, roughly nine per scenario, reported above to three-decimal dollar precision. The turn-level data (prompts, assigned tier, computed cost, rating) is **not published anywhere, including in the parent paper**, so no reader can currently check these figures. Re-validate on your own workload.
+
+2. **The baseline is disputed within our own documents.** This paper labels the comparator "Flat (frontier model)"; `MASTER_RESEARCH_PAPER.md` §5.3 labels the identical dollar figures "Flat (all capable model)". Those are different counterfactuals and cannot both be right. Until the turn-level data is published, treat the savings as measured against *some* single-model baseline of unconfirmed tier. Note also that routing every turn, greetings included, to one expensive model is the most favourable possible comparator.
 
 2. **Simulated costs.** Pricing is computed from published cloud rate cards. Customers with negotiated direct rates from OpenAI/Anthropic will see smaller savings.
 
@@ -84,13 +103,15 @@ These are all extension targets, not refutations. The regex-is-enough claim is b
 
 ## 6. What This Doesn't Claim
 
-- That a learned classifier *can't* beat keywords. Only that in our testing it didn't, and that the deployment-complexity tax of a learned model wasn't justified by the marginal accuracy.
+- That a learned classifier *can't* beat keywords, or that it doesn't. **No learned classifier was tested.** This work is silent on that comparison in both directions, and any earlier wording here suggesting otherwise was wrong.
 - That 49% is a guarantee. Different workloads will have different routing fractions and therefore different savings.
 - That this generalizes beyond LLM API routing. The broader boundary-mechanism hypothesis is tested in two other domains in the parent paper, but each domain is a separate empirical claim.
 
 ## 7. Reproducing the Results
 
-The classifier source is at `governor/router.py`. The pricing model is at `governor/pricing.py`. The 35-turn measurement methodology is in the parent paper (§5.3 of the full synthesis).
+The classifier source is at `governor/router.py`. The pricing model is at `governor/pricing.py`.
+
+**The 35-turn measurement methodology is not published.** An earlier version of this section pointed readers to "§5.3 of the full synthesis." That section contains the same four-row results table reproduced above and no method: no turn selection procedure, no prompts, no model identities, no rating protocol. The pointer was circular. Until the turn-level data is released, the figures in this document cannot be independently checked and should be read as indicative.
 
 To reproduce on your own workload:
 

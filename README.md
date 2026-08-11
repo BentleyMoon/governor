@@ -1,6 +1,12 @@
 # Governor
 
-**Cut your LLM bill 30-60% with a 200-line keyword router.** Drop-in OpenAI-compatible proxy. MIT-licensed.
+**Cut your LLM bill ~49% on coding workloads with a 200-line keyword router.** Drop-in OpenAI-compatible proxy. MIT-licensed.
+
+> **Evidence status, 2026-08-11.** The savings figures below come from 35 hand-rated turns against
+> simulated pricing, and the turn-level data is not published. Governor is a working, tested reference
+> implementation whose numbers are **indicative, not a validated benchmark**. The headline previously
+> read "30-60%", a range that appears in no measurement in this repository; the measured mixed-coding
+> figure is 49%.
 
 This is the production code from §5 ("Governor Routing") of [a research synthesis on boundary mechanisms in AI systems](PAPER.md). It's open source, no strings attached. Use forever.
 
@@ -12,7 +18,9 @@ STANDARD   →  bounded coding, implementation, reasoning      → capable model
 FRONTIER   →  architecture, multi-file refactor, security    → strongest model
 ```
 
-Classification is keyword-based (~200 lines of Python). The argument is empirical: the decision-relevant signal for tier selection is in the prompt itself. Internal models of conversation state didn't improve routing accuracy in my testing.
+Classification is keyword-based (~200 lines of Python). The argument is a hypothesis from the parent research program, not a benchmark result: the decision-relevant signal for tier selection is observable in the prompt itself.
+
+**No learned classifier was ever tested against it.** There is no head-to-head, so nothing here shows keywords beating a learned router. `MASTER_RESEARCH_PAPER.md` §7 records "N/A (no internal model tested)" for this domain. Earlier versions of this README claimed internal models "didn't improve routing accuracy in my testing"; that claim was not supported by any experiment and has been removed.
 
 ## Quickstart
 
@@ -38,7 +46,7 @@ client = OpenAI(base_url="http://localhost:8000/v1", api_key="anything")
 
 ## Measured savings
 
-| Workload | Flat (frontier) | Routed | Savings | Quality |
+| Workload | Flat, single model† | Routed | Savings | Quality |
 |---|---:|---:|---:|---:|
 | Mixed coding session | $0.194 | $0.100 | **49%** | 95% |
 | Debugging session | $0.156 | $0.055 | **65%** | 96% |
@@ -47,7 +55,14 @@ client = OpenAI(base_url="http://localhost:8000/v1", api_key="anything")
 
 *Q&A and support savings depend on the routing fraction (most turns route to ECONOMY). Coding/debugging are the conservative numbers.
 
-Source: §5 of [PAPER.md](PAPER.md), 35 measured turns across scripted and real sessions, simulated cloud pricing.
+† The baseline is every turn, greetings included, routed to a single model, which is the most favourable
+comparator available. Our own documents disagree on which tier it was: this repo's PAPER.md said
+"frontier", the parent synthesis says "all capable model". Stated as unconfirmed until the data is out.
+
+**Source and its limits.** §5 of [PAPER.md](PAPER.md), 35 measured turns across scripted and real
+sessions, simulated cloud pricing. The turn-level data, the prompts and the rating protocol are **not
+published**, in this repo or the parent paper, so these figures cannot currently be checked by anyone.
+Quality is hand-rated by the author with no second rater.
 
 ## Backends
 
