@@ -9,7 +9,7 @@ description = "Cut your LLM bill 30-60% with a one-line proxy change. Workload-c
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Bentley Moon", email = "bentleymoonperkins@gmail.com" }
+    { name = "Bentley Moon", email = "futurisminstitute@gmail.com" }
 ]
 requires-python = ">=3.10"
 keywords = ["llm", "openai", "anthropic", "proxy", "router", "cost-optimization"]
