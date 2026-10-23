@@ -73,7 +73,7 @@ This is reported alongside Governor because it shares the same architectural pri
 > research ecosystem retracted graded results to this failure (verifier-instruments, `lab/RETRACTIONS.jsonl`). Until a canary and a negative
 > control are added, treat §3 as unvalidated and do not cite it.
 
-## 4. Why a Regex Is Enough (the boring argument)
+## 4. Why a Regex Is Enough
 
 The hypothesis from the broader research program is that **boundary mechanisms outperform internal models when the sufficient statistic for the decision is observable at the system-environment interface.**
 

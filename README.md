@@ -1,6 +1,6 @@
 # Governor
 
-**Cut your LLM bill ~49% on coding workloads with a 200-line keyword router.** Drop-in OpenAI-compatible proxy. MIT-licensed.
+A 200-line keyword router for OpenAI-compatible APIs: it sends each request to the cheapest model tier that suits the work. Indicative saving of about 49% on about nine hand-rated mixed-coding turns, against simulated pricing. MIT-licensed.
 
 > **Evidence status, 2026-08-11.** The savings figures below come from 35 hand-rated turns against
 > simulated pricing, and the turn-level data is not published. Governor is a working, tested reference
@@ -8,7 +8,7 @@
 > read "30-60%", a range that appears in no measurement in this repository; the measured mixed-coding
 > figure is 49%.
 
-This is the production code from §5 ("Governor Routing") of [a research synthesis on boundary mechanisms in AI systems](PAPER.md). It's open source, no strings attached. Use forever.
+This is the code from §5 ("Governor Routing") of [a research synthesis on boundary mechanisms in AI systems](PAPER.md), open source under the MIT licence.
 
 ## How it works
 
@@ -81,12 +81,12 @@ Quality is hand-rated by the author with no second rater.
 
 - **Not a paid product.** Governor is open-source MIT, no commercial tier. The competitive landscape (CodeRouter, RouteLLM, Martian, OpenRouter) is mature; Governor is published as a clean, research-backed reference implementation, not a business.
 - **Not a marketplace.** No model arbitrage, no price-based routing. Routing picks by *workload classification*, not provider availability.
-- **Not a fine-tuned classifier.** The whole pitch is that you don't need one for this decision.
+- **Not a fine-tuned classifier.** The point is that this decision does not need one.
 
 ## What this is
 
 - A clean, working, tested implementation of workload-classifying LLM routing
-- The production code from a research synthesis that is not public (this component: about 35 hand-rated turns)
+- The code from a research synthesis that is not public (this component: about 35 hand-rated turns)
 - A teaching artifact for engineers thinking about boundary mechanisms vs. internal-model approaches
 
 ## If you want a hosted tool
@@ -105,4 +105,4 @@ Related, same author: [lattice-commit](https://github.com/bentleymoon/lattice-co
 
 ## License
 
-MIT. Use it, fork it, don't ask permission.
+MIT.

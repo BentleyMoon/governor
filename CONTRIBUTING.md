@@ -16,7 +16,7 @@ Thanks for considering a contribution. Honest expectations up front:
 
 - **Replacing the keyword classifier with a learned model.** The whole pitch of Governor rests on keyword sufficiency. PRs adding embeddings, fine-tuning, or active-learning on the routing decision will be closed unless they include statistical evidence (>30 turns, blind quality rating) showing meaningful improvement over keywords on the same workload.
 - **Generic LLM features** that would make Governor a frontier proxy with everything (image generation, voice, vector stores, agentic loops). This stays a routing proxy. Other tools do those.
-- **Frontend or hosted-dashboard work** until there are paying customers asking for it.
+- **Frontend or hosted-dashboard work.** It is out of scope.
 
 ## Process
 
