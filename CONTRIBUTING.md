@@ -6,11 +6,11 @@ Thanks for considering a contribution. Honest expectations up front:
 
 ## What's in scope
 
-- **Keyword list extensions** — adding terms for non-English workloads, or for domain-specific patterns (medical, legal, finance, gaming, etc.). Tag the PR `keywords:<domain>`.
-- **Backend integrations** — getting Governor working cleanly in front of new model providers (Cohere, Mistral, local Ollama, vLLM, etc.).
-- **Better cost models** — input/output pricing changes, tier-specific surcharges, batch-mode pricing.
-- **Streaming usage accounting** — the current code under-counts streamed-call costs because the upstream `usage` block isn't always emitted at end-of-stream. A robust fix here is welcome.
-- **Examples** — IDE plugins, CLI agents, framework integrations.
+- **Keyword list extensions**: adding terms for non-English workloads, or for domain-specific patterns (medical, legal, finance, gaming, etc.). Tag the PR `keywords:<domain>`.
+- **Backend integrations**: getting Governor working cleanly in front of new model providers (Cohere, Mistral, local Ollama, vLLM, etc.).
+- **Better cost models**: input/output pricing changes, tier-specific surcharges, batch-mode pricing.
+- **Streaming usage accounting**: the current code under-counts streamed-call costs because the upstream `usage` block isn't always emitted at end-of-stream. A robust fix here is welcome.
+- **Examples**: IDE plugins, CLI agents, framework integrations.
 
 ## What's out of scope (for now)
 

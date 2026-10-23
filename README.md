@@ -20,7 +20,7 @@ FRONTIER   →  architecture, multi-file refactor, security    → strongest mod
 
 Classification is keyword-based (~200 lines of Python). The argument is a hypothesis from the parent research program, not a benchmark result: the decision-relevant signal for tier selection is observable in the prompt itself.
 
-**No learned classifier was ever tested against it.** There is no head-to-head, so nothing here shows keywords beating a learned router. `MASTER_RESEARCH_PAPER.md` §7 records "N/A (no internal model tested)" for this domain. Earlier versions of this README claimed internal models "didn't improve routing accuracy in my testing"; that claim was not supported by any experiment and has been removed.
+**No learned classifier was ever tested against it.** There is no head-to-head, so nothing here shows keywords beating a learned router. The unpublished research synthesis (`MASTER_RESEARCH_PAPER.md`, not public) records in §7 "N/A (no internal model tested)" for this domain. Earlier versions of this README claimed internal models "didn't improve routing accuracy in my testing"; that claim was not supported by any experiment and has been removed.
 
 ## Quickstart
 
@@ -71,7 +71,7 @@ Quality is hand-rated by the author with no second rater.
 
 ## Status
 
-- ✅ Classifier (`governor/router.py`) — 50 unit + integration tests pass
+- ✅ Classifier (`governor/router.py`): 50 unit + integration tests pass
 - ✅ FastAPI proxy with OpenAI + Anthropic backends
 - ✅ Per-tier usage tracking + savings math
 - ✅ Streaming on OpenAI; non-streaming on Anthropic (translation pending)
@@ -86,22 +86,22 @@ Quality is hand-rated by the author with no second rater.
 ## What this is
 
 - A clean, working, tested implementation of workload-classifying LLM routing
-- The production code from a documented research finding (986+ trials of related work, this one ~35 turns)
+- The production code from a research synthesis that is not public (this component: about 35 hand-rated turns)
 - A teaching artifact for engineers thinking about boundary mechanisms vs. internal-model approaches
 
 ## If you want a hosted tool
 
 For hosted LLM cost routing: [CodeRouter](https://www.coderouter.io/), [OpenRouter](https://openrouter.ai/), [Portkey](https://portkey.ai/), [Martian](https://withmartian.com/).
 
-Related, same author: [lattice-commit](https://github.com/bentleymoon/lattice-commit) — open-source, git-native checkpointing for multi-file LLM code repair (`pip install lattice-commit`). Different problem: correctness rather than cost.
+Related, same author: [lattice-commit](https://github.com/bentleymoon/lattice-commit), open-source, git-native checkpointing for multi-file LLM code repair (`pip install lattice-commit`). Different problem: correctness rather than cost.
 
 ## Files
 
-- [PAPER.md](PAPER.md) — public §5 extract
-- [governor/](governor/) — package source
-- [tests/](tests/) — 50 tests
-- [examples/](examples/) — copy-paste integrations
-- [site/](site/) — static project page
+- [PAPER.md](PAPER.md): public §5 extract
+- [governor/](governor/): package source
+- [tests/](tests/): 50 tests
+- [examples/](examples/): copy-paste integrations
+- [site/](site/): static project page
 
 ## License
 

@@ -4,8 +4,8 @@ Copy-paste integrations.
 
 | File | What it shows |
 |---|---|
-| [openai_sdk.py](openai_sdk.py) | Python OpenAI SDK with `base_url` swap — 4 routing examples + streaming + usage check |
-| [curl.sh](curl.sh) | Pure-curl smoke test — health, 3 tiers, cumulative savings |
+| [openai_sdk.py](openai_sdk.py) | Python OpenAI SDK with `base_url` swap: 4 routing examples + streaming + usage check |
+| [curl.sh](curl.sh) | Pure-curl smoke test: health, 3 tiers, cumulative savings |
 | [cursor_config.md](cursor_config.md) | Cursor IDE setup |
 | [aider_config.md](aider_config.md) | Aider CLI setup |
 

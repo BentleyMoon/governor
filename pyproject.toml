@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "governor-proxy"
 version = "0.1.0"
-description = "Cut your LLM bill 30-60% with a one-line proxy change. Workload-classifying router for OpenAI-compatible APIs."
+description = "Workload-classifying router for OpenAI-compatible APIs. Indicative savings on 35 hand-rated turns against simulated pricing; see README."
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [

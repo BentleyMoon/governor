@@ -14,7 +14,7 @@ Cursor lets you point at a custom OpenAI-compatible base URL. Governor is one.
 2. **In Cursor**, open Settings → Models → "Custom OpenAI-compatible endpoint"
    - Base URL: `http://localhost:8000/v1`
    - API key: anything (Governor uses the server-side key)
-   - Model name: leave blank — Governor selects per request
+   - Model name: leave blank; Governor selects per request
 
 3. **That's it.** Cursor's chat panel now routes through Governor.
 

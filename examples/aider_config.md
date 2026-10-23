@@ -18,7 +18,7 @@ aider
 
 ## What Aider sends, and how Governor classifies it
 
-Aider's first turn typically includes test output, file content, and a question. That's a long coding request — Governor will likely route it to STANDARD or FRONTIER depending on length.
+Aider's first turn typically includes test output, file content, and a question. That's a long coding request, so Governor will likely route it to STANDARD or FRONTIER depending on length.
 
 | Aider turn type | Likely Governor tier | Why |
 |---|---|---|
