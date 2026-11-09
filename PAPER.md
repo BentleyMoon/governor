@@ -58,20 +58,17 @@ Quality scoring: hand-rated on a 0–1 scale, blind to which tier produced the r
 
 ## 3. Containment
 
-A separate containment validator built into the same proxy catches dangerous LLM proposals: workspace mutations and policy edits the system shouldn't admit. On 200 trials across 4 attack types (test-file mutation, delete-without-fallback, germline-without-dissent, policy-self-mutation):
+A separate containment validator, built into the same proxy as a sibling module, checks LLM proposals for workspace mutations and policy edits the system shouldn't admit. It is reported here because it observes the same kind of boundary as the router.
 
-- Adversarial detection rate: **100%** (55/55)
-- False positive rate on valid proposals: **0%** (0/145)
-
-This is reported alongside Governor because it shares the same architectural principle (boundary observation) and is implemented as a sibling module in the proxy.
-
-> **Read this result with suspicion, 2026-08-11.** A perfect 100% detection and 0% false-alarm score, on
-> attacks and valid proposals both authored by the same person who wrote the validator, is the signature
-> of an instrument that is not discriminating rather than one that is discriminating perfectly. There is
-> no canary here: no deliberately broken case the validator must fail to catch, which is the only way to
-> tell "caught everything" apart from "flagged everything" or "never looked." A sibling program in this
-> research ecosystem retracted graded results to this failure (verifier-instruments, `lab/RETRACTIONS.jsonl`). Until a canary and a negative
-> control are added, treat §3 as unvalidated and do not cite it.
+> **Unvalidated; do not cite, 2026-08-11.** On 200 trials across 4 attack types (test-file mutation,
+> delete-without-fallback, germline-without-dissent, policy-self-mutation), the validator flagged 55 of 55
+> attacks and 0 of 145 valid proposals. The attacks and the valid proposals were both written by the person
+> who wrote the validator, and a perfect score on such a set is what an instrument that does not
+> discriminate would also produce. There is no canary here: no deliberately broken case the validator must
+> fail to catch, which is the only way to tell "caught everything" apart from "flagged everything" or "never
+> looked." A sibling program in this research ecosystem retracted graded results to this failure
+> (verifier-instruments, `lab/RETRACTIONS.jsonl`). Until a canary and a negative control are added, treat
+> these figures as unvalidated.
 
 ## 4. Why a Regex Is Enough
 

@@ -24,7 +24,11 @@ Classification is keyword-based (~200 lines of Python). The argument is a hypoth
 
 ## Quickstart
 
+Governor is not on PyPI; the PyPI package named `governor` is an unrelated project. Install it from source:
+
 ```bash
+git clone https://github.com/BentleyMoon/governor.git
+cd governor
 pip install -e ".[dev]"
 
 # Set keys for the backends you want to use:
@@ -44,14 +48,14 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="anything")
 ```
 
-## Measured savings
+## Indicative savings, from 35 hand-rated turns
 
 | Workload | Flat, single model† | Routed | Savings | Quality |
 |---|---:|---:|---:|---:|
-| Mixed coding session | $0.194 | $0.100 | **49%** | 95% |
-| Debugging session | $0.156 | $0.055 | **65%** | 96% |
-| Research / Q&A | $0.052 | $0.004 | **92%*** | 100% |
-| Customer support | $0.040 | $0.003 | **93%*** | 100% |
+| Mixed coding session | $0.194 | $0.100 | 49% | 95% |
+| Debugging session | $0.156 | $0.055 | 65% | 96% |
+| Research / Q&A | $0.052 | $0.004 | 92%* | 100% |
+| Customer support | $0.040 | $0.003 | 93%* | 100% |
 
 *Q&A and support savings depend on the routing fraction (most turns route to ECONOMY). Coding/debugging are the conservative numbers.
 
@@ -79,13 +83,13 @@ Quality is hand-rated by the author with no second rater.
 
 ## What this is not
 
-- **Not a paid product.** Governor is open-source MIT, no commercial tier. The competitive landscape (CodeRouter, RouteLLM, Martian, OpenRouter) is mature; Governor is published as a clean, research-backed reference implementation, not a business.
+- **Not a paid product.** Governor is open-source MIT, no commercial tier. The competitive landscape (CodeRouter, RouteLLM, Martian, OpenRouter) is mature; Governor is published as reference code.
 - **Not a marketplace.** No model arbitrage, no price-based routing. Routing picks by *workload classification*, not provider availability.
 - **Not a fine-tuned classifier.** The point is that this decision does not need one.
 
 ## What this is
 
-- A clean, working, tested implementation of workload-classifying LLM routing
+- A keyword router that sorts each request into one of three model tiers and forwards it, with 50 tests
 - The code from a research synthesis that is not public (this component: about 35 hand-rated turns)
 - A teaching artifact for engineers thinking about boundary mechanisms vs. internal-model approaches
 
