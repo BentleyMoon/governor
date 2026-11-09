@@ -2,7 +2,6 @@
 
 from governor.pricing import (
     DEFAULT_PRICES,
-    TokenPrice,
     _resolve_price,
     estimate_cost,
     estimate_savings,
